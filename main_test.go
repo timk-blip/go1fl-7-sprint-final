@@ -73,6 +73,8 @@ func TestCafeCount(t *testing.T) {
 		strings.TrimSpace(response.Body.String())
 		body := response.Body.String()
 		bodyInt := len(strings.Split(body, ","))
+		//не понимаю, как обработать пустую строку, потому что слайс равен 1
+		//Учитывайте, что если вызвать Split() для пустой строки, то в слайсе будет один элемент — пустая строка.
 		if body == "" {
 			bodyInt = 0
 		}
@@ -104,6 +106,8 @@ func TestCafeSearch(t *testing.T) {
 		if strings.Contains(body, v.search) {
 			assert.Equal(t, v.wantCount, count, v.search)
 		} else {
+			//не понимаю, как обработать пустую строку, потому что слайс равен 1
+			//Учитывайте, что если вызвать Split() для пустой строки, то в слайсе будет один элемент — пустая строка.
 			if body == "" {
 				count = 0
 				assert.Equal(t, v.wantCount, count, v.search)
